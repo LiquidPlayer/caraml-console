@@ -7,6 +7,7 @@
 package org.liquidplayer.caraml.console;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.os.Looper;
@@ -232,7 +233,7 @@ class ConsoleView extends RelativeLayout implements AnsiConsoleTextView.Listener
     private void enterCommand() {
         final String cmd = inputBox.getText().toString();
 
-        consoleTextView.println("\u001b[30;1m> " + cmd);
+        consoleTextView.println("\u001b[1m> " + cmd);
         setInputBoxText("");
         history.add(cmd);
         item = history.size();

@@ -7,6 +7,7 @@
 package org.liquidplayer.caraml.console;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
@@ -36,6 +37,25 @@ public class ConsoleJS extends JSObject implements CaramlSurface, JSContext.IJSE
 
         uuid = UUID.randomUUID().toString();
         sessionMap.put(uuid, this);
+
+        // defaults
+        this.backgroundColor = Color.BLACK;
+        this.textColor = Color.GREEN;
+        this.fontSize = 12.0f;
+
+        if (opts != null && opts.isObject()) {
+            JSObject options = opts.toObject();
+            JSValue backgroundColor = options.property("backgroundColor");
+            if (backgroundColor.isString())
+                this.backgroundColor = Color.parseColor(backgroundColor.toString());
+            JSValue textColor = options.property("textColor");
+            if (textColor.isString())
+                this.textColor = Color.parseColor(textColor.toString());
+            JSValue fontSize = options.property("fontSize");
+            if (fontSize.isNumber()) {
+                this.fontSize = fontSize.toNumber().floatValue();
+            }
+        }
 
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
@@ -198,6 +218,18 @@ public class ConsoleJS extends JSObject implements CaramlSurface, JSContext.IJSE
         currentView = view;
     }
 
+    int getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    int getTextColor() {
+        return textColor;
+    }
+
+    float getFontSize() {
+        return fontSize;
+    }
+
     void removeCurrentView(ConsoleSurface view) {
         if (currentView == view) currentView = null;
     }
@@ -265,6 +297,9 @@ public class ConsoleJS extends JSObject implements CaramlSurface, JSContext.IJSE
     private JSFunction console_log = null;
     private boolean processedException = false;
     private CaramlJS caramlJS;
+    private int backgroundColor;
+    private int textColor;
+    private float fontSize;
 
     private enum State {
         Init,

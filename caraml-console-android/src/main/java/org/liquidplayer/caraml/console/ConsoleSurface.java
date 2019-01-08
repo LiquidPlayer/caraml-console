@@ -98,6 +98,13 @@ public class ConsoleSurface extends ConsoleView {
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         session.setCurrentView(this);
+
+        inputBox.setTextSize(session.getFontSize());
+        inputBox.setTextColor(session.getTextColor());
+        setBackgroundColor(session.getBackgroundColor());
+        consoleTextView.setTextSize(session.getFontSize());
+        consoleTextView.setTextColor(session.getTextColor());
+
         if (temp.length() > 0) {
             consoleTextView.print(temp);
             temp = "";
