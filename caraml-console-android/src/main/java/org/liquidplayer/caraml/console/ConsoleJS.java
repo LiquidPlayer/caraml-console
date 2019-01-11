@@ -111,12 +111,11 @@ public class ConsoleJS extends JSObject implements CaramlSurface, JSContext.IJSE
     @jsexport @SuppressWarnings("unused")
     JSObject detach() {
         detachPromise = getContext().evaluateScript(createPromiseObject).toObject();
+        JSObject promise = detachPromise.property("promise").toObject();
         if (currentState == State.Detached) {
             emit.call(this, "detached");
             detachPromise.property("resolve").toFunction().call(null);
-            JSObject promise = detachPromise;
             detachPromise = null;
-            return promise;
         } else if (currentState == State.Attached) {
             if (BuildConfig.DEBUG && caramlJS == null) throw new AssertionError();
             currentState = State.Detaching;
@@ -124,11 +123,9 @@ public class ConsoleJS extends JSObject implements CaramlSurface, JSContext.IJSE
         } else {
             detachPromise.property("reject").toFunction().
                     call(null, "Attach/detach pending");
-            JSObject promise = detachPromise;
             detachPromise = null;
-            return promise;
         }
-        return detachPromise.property("promise").toObject();
+        return promise;
     }
 
     @jsexport @SuppressWarnings("unused")
@@ -161,8 +158,7 @@ public class ConsoleJS extends JSObject implements CaramlSurface, JSContext.IJSE
 
         if (!fromRestore) {
             if (attachPromise != null) {
-                attachPromise.property("resolve").
-                        toFunction().call(attachPromise.property("promise").toObject());
+                attachPromise.property("resolve").toFunction().call(null);
             }
             emit.call(this, "attached");
             attachPromise = null;
