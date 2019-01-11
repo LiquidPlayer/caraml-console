@@ -1,11 +1,9 @@
-//
-//  ConsoleJS.h
-//  caraml-console
-//
-//  Created by Eric Lange on 1/10/19.
-//  Copyright © 2019 LiquidPlayer. All rights reserved.
-//
-
+/*
+ * Copyright (c) 2019 Eric Lange
+ *
+ * Distributed under the MIT License.  See LICENSE.md at
+ * https://github.com/LiquidPlayer/caraml-console for terms and conditions.
+ */
 #import <UIKit/UIKit.h>
 #import <LiquidCore/LiquidCore.h>
 #import <JavaScriptCore/JavaScriptCore.h>

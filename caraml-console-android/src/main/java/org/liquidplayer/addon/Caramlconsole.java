@@ -14,6 +14,7 @@ import org.liquidplayer.javascript.JSFunction;
 import org.liquidplayer.javascript.JSObject;
 import org.liquidplayer.javascript.JSValue;
 import org.liquidplayer.service.AddOn;
+import org.liquidplayer.service.MicroService;
 
 @SuppressWarnings("unused")
 public class Caramlconsole implements AddOn {
@@ -30,7 +31,7 @@ public class Caramlconsole implements AddOn {
     }
 
     @Override
-    public void require(final JSValue binding) {
+    public void require(final JSValue binding, MicroService service) {
         if (BuildConfig.DEBUG && (binding == null || !binding.isObject())) {
             throw new AssertionError();
         }
