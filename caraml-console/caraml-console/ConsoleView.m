@@ -6,7 +6,7 @@
  */
 #import "ConsoleView.h"
 
-@implementation ConsoleView
+@implementation LCConsoleView
 
 - (id) initWithFrame:(CGRect)frame
 {

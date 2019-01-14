@@ -9,10 +9,10 @@
 #import "CommandTextField.h"
 #import "ConsoleJS.h"
 
-@interface ConsoleView : UIView <UITextFieldDelegate, CommandTextFieldDelegate, UITextViewDelegate>
+@interface LCConsoleView : UIView <UITextFieldDelegate, LCCommandTextFieldDelegate, UITextViewDelegate>
 
-@property (weak, nonatomic) IBOutlet AnsiConsoleTextView *console;
-@property (weak, nonatomic) IBOutlet CommandTextField *command;
+@property (weak, nonatomic) IBOutlet LCAnsiConsoleTextView *console;
+@property (weak, nonatomic) IBOutlet LCCommandTextField *command;
 @property (weak, nonatomic) IBOutlet UIButton *upHistory;
 @property (weak, nonatomic) IBOutlet UIButton *downHistory;
 

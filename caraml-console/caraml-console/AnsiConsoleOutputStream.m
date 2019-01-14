@@ -6,18 +6,18 @@
  */
 #import "AnsiConsoleOutputStream.h"
 
-@interface AnsiConsoleOutputStream()
+@interface LCAnsiConsoleOutputStream()
 @property (atomic, strong, readonly) NSMutableArray *consoleStrings;
 @property (atomic, assign) BOOL halt;
 @property (atomic) BOOL need_refresh;
 @end
 
-@implementation AnsiConsoleOutputStream {
+@implementation LCAnsiConsoleOutputStream {
     int index;
     NSMutableArray *cursorPositionStack;
-    NSObject<AnsiConsoleOutputStreamDelegate>* delegate_;
+    NSObject<LCAnsiConsoleOutputStreamDelegate>* delegate_;
 }
-- (id) initWithInitialDisplayText:(NSAttributedString *)text delegate:(NSObject<AnsiConsoleOutputStreamDelegate>*)delegate
+- (id) initWithInitialDisplayText:(NSAttributedString *)text delegate:(NSObject<LCAnsiConsoleOutputStreamDelegate>*)delegate
 {
     NSOutputStream *outputStream = [[NSOutputStream alloc] initToMemory];
     [outputStream open];

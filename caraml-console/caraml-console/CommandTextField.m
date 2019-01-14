@@ -6,7 +6,7 @@
  */
 #import "CommandTextField.h"
 
-@implementation CommandTextField
+@implementation LCCommandTextField
 
 - (NSArray *) keyCommands
 {

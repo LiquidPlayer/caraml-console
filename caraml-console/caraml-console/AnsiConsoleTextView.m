@@ -7,19 +7,19 @@
 #import "AnsiConsoleTextView.h"
 #import "AnsiConsoleOutputStream.h"
 
-@interface AnsiConsoleTextView() <AnsiConsoleOutputStreamDelegate>
-@property (readonly, strong, nonatomic) AnsiConsoleOutputStream* stream;
+@interface LCAnsiConsoleTextView() <LCAnsiConsoleOutputStreamDelegate>
+@property (readonly, strong, nonatomic) LCAnsiConsoleOutputStream* stream;
 @property (readwrite, assign, atomic) BOOL awaitingRefresh;
 @end
 
-@implementation AnsiConsoleTextView
+@implementation LCAnsiConsoleTextView
 
 - (id) initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         _awaitingRefresh = NO;
-        _stream = [[AnsiConsoleOutputStream alloc] initWithInitialDisplayText:self.attributedText delegate:self];
+        _stream = [[LCAnsiConsoleOutputStream alloc] initWithInitialDisplayText:self.attributedText delegate:self];
     }
     return self;
 }
@@ -29,7 +29,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         _awaitingRefresh = NO;
-        _stream = [[AnsiConsoleOutputStream alloc] initWithInitialDisplayText:self.attributedText delegate:self];
+        _stream = [[LCAnsiConsoleOutputStream alloc] initWithInitialDisplayText:self.attributedText delegate:self];
     }
     return self;
 }

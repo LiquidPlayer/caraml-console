@@ -6,11 +6,11 @@
  */
 #import <UIKit/UIKit.h>
 
-@protocol CommandTextFieldDelegate <NSObject>
+@protocol LCCommandTextFieldDelegate <NSObject>
 - (void) onUpArrow;
 - (void) onDownArrow;
 @end
 
-@interface CommandTextField : UITextField
-@property (nonatomic, weak, readwrite) id<CommandTextFieldDelegate> commandDelegate;
+@interface LCCommandTextField : UITextField
+@property (nonatomic, weak, readwrite) id<LCCommandTextFieldDelegate> commandDelegate;
 @end

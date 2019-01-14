@@ -9,7 +9,7 @@
 
 #import "AnsiOutputStream.h"
 
-@interface HtmlAnsiOutputStream : AnsiOutputStream
+@interface LCHtmlAnsiOutputStream : LCAnsiOutputStream
 - (void) flush;
 @end
 

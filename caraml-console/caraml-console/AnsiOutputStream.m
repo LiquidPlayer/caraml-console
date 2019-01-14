@@ -9,7 +9,7 @@
 
 typedef unsigned char byte;
 
-@interface AnsiOutputStream()
+@interface LCAnsiOutputStream()
 @end
 
 static const int MAX_ESCAPE_SEQUENCE_LENGTH = 100;
@@ -29,7 +29,7 @@ static const int SECOND_OSC_CHAR = ']';
 static const int BEL = 7;
 static const int SECOND_ST_CHAR = '\\';
 
-@implementation AnsiOutputStream {
+@implementation LCAnsiOutputStream {
     int pos;
     int startOfValue;
     NSMutableArray *options;

@@ -52,7 +52,7 @@ typedef enum _AnsiColor
     WHITE = 7
 } AnsiColor;
 
-@interface AnsiOutputStream : NSOutputStream
+@interface LCAnsiOutputStream : NSOutputStream
 @property (strong, readwrite, atomic) NSOutputStream *outputStream;
 
 - (id) initWithOutputStream:(NSOutputStream *)os;

@@ -17,7 +17,7 @@ static const char* BYTES_GT = "&gt;";
 static const char* BYTES_BR = "<br>";
 static const char* BYTES_SP = "&nbsp;";
 
-@implementation HtmlAnsiOutputStream {
+@implementation LCHtmlAnsiOutputStream {
     bool concealOn;
     NSMutableArray* closingAttributes;
 }

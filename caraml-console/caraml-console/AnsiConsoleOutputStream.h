@@ -10,14 +10,14 @@
 #ifndef AnsiConsoleOutputStream_h
 #define AnsiConsoleOutputStream_h
 
-@protocol AnsiConsoleOutputStreamDelegate
+@protocol LCAnsiConsoleOutputStreamDelegate
 - (void) onRefresh;
 @end
 
-@interface AnsiConsoleOutputStream : HtmlAnsiOutputStream
+@interface LCAnsiConsoleOutputStream : HtmlAnsiOutputStream
 @property (strong, atomic) NSAttributedString *displayText;
 
-- (id) initWithInitialDisplayText:(NSAttributedString *)text delegate:(NSObject<AnsiConsoleOutputStreamDelegate>*)delegate;
+- (id) initWithInitialDisplayText:(NSAttributedString *)text delegate:(NSObject<LCAnsiConsoleOutputStreamDelegate>*)delegate;
 - (void) print:(NSString*)ansiString;
 @end
 

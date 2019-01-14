@@ -6,12 +6,12 @@
  */
 #import <UIKit/UIKit.h>
 
-@protocol AnsiConsoleTextViewDelegate <NSObject>
+@protocol LCAnsiConsoleTextViewDelegate <NSObject>
 - (void) onTextRefreshed;
 @end
 
-@interface AnsiConsoleTextView : UITextView
-@property (nonatomic, readwrite, weak) NSObject<AnsiConsoleTextViewDelegate>* refreshDelegate;
+@interface LCAnsiConsoleTextView : UITextView
+@property (nonatomic, readwrite, weak) NSObject<LCAnsiConsoleTextViewDelegate>* refreshDelegate;
 
 - (void) print:(NSString *)ansiString;
 - (void) println:(NSString *)ansiString;
