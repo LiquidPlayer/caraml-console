@@ -247,10 +247,7 @@ public class ConsoleJS extends JSObject implements CaramlSurface, JSContext.IJSE
         getContext().getGroup().schedule(new Runnable() {
             @Override
             public void run() {
-                JSValue resize = property("resize");
-                if (resize.isObject() && resize.toObject().isFunction()) {
-                    resize.toFunction().call(null, columns, rows);
-                }
+                emit.call(ConsoleJS.this, "resize", columns, rows);
             }
         });
     }
