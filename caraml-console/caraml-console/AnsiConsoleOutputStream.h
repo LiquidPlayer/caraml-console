@@ -14,7 +14,7 @@
 - (void) onRefresh;
 @end
 
-@interface LCAnsiConsoleOutputStream : HtmlAnsiOutputStream
+@interface LCAnsiConsoleOutputStream : LCHtmlAnsiOutputStream
 @property (strong, atomic) NSAttributedString *displayText;
 
 - (id) initWithInitialDisplayText:(NSAttributedString *)text delegate:(NSObject<LCAnsiConsoleOutputStreamDelegate>*)delegate;
