@@ -48,6 +48,15 @@
 
 @implementation CaramlConsoleFactory
 
+- (id) init
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
 - (id<LCAddOn>)createInstance
 {
     return [[CaramlConsole alloc] init];
@@ -58,5 +67,5 @@
 __attribute__((constructor))
 static void consoleJSRegistration()
 {
-    [LCAddOnFactory registerAddOnFactory:@"caramlconsole" factory:[[CaramlConsole alloc] init]];
+    [LCAddOnFactory registerAddOnFactory:@"caramlconsole" factory:[[CaramlConsoleFactory alloc] init]];
 }
