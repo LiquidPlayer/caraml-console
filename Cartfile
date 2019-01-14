@@ -1,2 +1,2 @@
-git "git@github.com:LiquidPlayer/LiquidCore.git" "master"
-git "git@github.com:LiquidPlayer/caraml-core.git" "master"
+git "file:///Users/eric/workspace/LiquidPlayer/LiquidCore" "master"
+git "file:///Users/eric/workspace/LiquidPlayer/caramlview/caramlview/node_modules/caraml-core" "master"
