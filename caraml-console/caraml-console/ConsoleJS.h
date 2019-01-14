@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface ConsoleJS : JSValue<JSExport, LCCaramlSurface>
+@interface ConsoleJS : NSObject<JSExport, LCCaramlSurface>
 
 @property (nonatomic, strong) UIColor* backgroundColor;
 @property (nonatomic, strong) UIColor* textColor;
