@@ -26,7 +26,7 @@ typedef enum _State {
     State currentState_;
     JSValue* attachPromise_;
     JSValue* detachPromise_;
-    ConsoleView* currentView_;
+    LCConsoleView* currentView_;
     BOOL processedException_;
     LCProcess *process_;
     JSContext *context_;
