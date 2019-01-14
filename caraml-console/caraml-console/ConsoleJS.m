@@ -86,7 +86,7 @@ static NSString* emitFuncS = @"() => arguments[0].emit.call(...arguments)";
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            self->currentView_ = [[ConsoleView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+            self->currentView_ = [[LCConsoleView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
             [self->currentView_ setSession:self];
             self->currentState_ = Detached;
             [self->process_ async:^(JSContext *context) {
