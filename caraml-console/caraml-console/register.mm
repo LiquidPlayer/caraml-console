@@ -58,5 +58,5 @@
 __attribute__((constructor))
 static void consoleJSRegistration()
 {
-    [LCAddOnFactory reigsterAddOnFactory:[[CaramlConsole alloc] init]];
+    [LCAddOnFactory registerAddOnFactory:[[CaramlConsole alloc] init]];
 }
