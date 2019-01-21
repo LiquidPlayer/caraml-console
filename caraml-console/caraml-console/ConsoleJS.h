@@ -20,10 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface ConsoleJS : NSObject<JSExport, LCCaramlSurface>
+@interface ConsoleJS : NSObject<ConsoleJSExports, LCCaramlSurface>
 
 @property (nonatomic, strong) UIColor* backgroundColor;
 @property (nonatomic, strong) UIColor* textColor;
+@property (nonatomic, strong) NSString* textColorString;
 @property (nonatomic, copy) NSNumber* fontSize;
 
 - (void) resize:(int)columns rows:(int)rows;

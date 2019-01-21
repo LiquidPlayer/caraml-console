@@ -59,12 +59,16 @@
     [self.command setCommandDelegate:self];
     [self.command becomeFirstResponder];
     [self.console setDelegate:self];
-    self.command.smartQuotesType = UITextSmartQuotesTypeNo;
+    if (@available(iOS 11.0, *)) {
+        self.command.smartQuotesType = UITextSmartQuotesTypeNo;
+    }
     self.command.autocorrectionType = UITextAutocorrectionTypeNo;
     
     [self.console setBackgroundColor:self.session.backgroundColor];
-    [self.console setTextColor:self.session.textColor];
+    [self.console setTextColorString:self.session.textColorString];
+    [self.console setFontSize:self.session.fontSize];
     [self.command setTextColor:self.session.textColor];
+    self.backgroundColor = self.session.backgroundColor;
     
     UITextInputAssistantItem* item = [self.command inputAssistantItem];
     item.leadingBarButtonGroups = @[];
@@ -137,7 +141,7 @@
 {
     NSString *cmd = [self.command.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
     if (cmd.length > 0) {
-        NSString *display = [NSString stringWithFormat:@"%C[30;1m> %@", 0x001B, cmd];
+        NSString *display = [NSString stringWithFormat:@"%C[1m> %@", 0x001B, cmd];
         
         [self.console println:display];
         [self.command setText:@""];

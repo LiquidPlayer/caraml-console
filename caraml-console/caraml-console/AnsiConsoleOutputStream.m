@@ -75,7 +75,7 @@
     NSData *contents = [currentStream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
     NSString *htmlString = [[NSString alloc] initWithData:contents encoding:NSUTF8StringEncoding];
 
-    htmlString = [NSString stringWithFormat:@"<span style=\"font-family: Menlo; font-size: 12\">%@</span>", htmlString];
+    htmlString = [NSString stringWithFormat:@"<span style=\"font-family: Menlo; color: %@; font-size: %@;\">%@</span>", self.textColor, self.fontSize, htmlString];
 
     NSMutableAttributedString *text_ = [[NSMutableAttributedString alloc]
                                 initWithData: [htmlString dataUsingEncoding:NSUnicodeStringEncoding]

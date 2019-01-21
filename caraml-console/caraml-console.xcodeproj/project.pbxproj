@@ -10,8 +10,6 @@
 		07E0025921E797FB0088E79C /* caraml_console.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E0025721E797FB0088E79C /* caraml_console.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07E0026421E7AA670088E79C /* caraml-console.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E0026221E7AA670088E79C /* caraml-console.h */; };
 		07E0026521E7AA670088E79C /* caraml-console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E0026321E7AA670088E79C /* caraml-console.cpp */; };
-		07E0026921E7AB1E0088E79C /* LiquidCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E0026721E7AB1E0088E79C /* LiquidCore.framework */; };
-		07E0026A21E7AB1E0088E79C /* caraml_core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E0026821E7AB1E0088E79C /* caraml_core.framework */; };
 		07E0026C21E7C4250088E79C /* register.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07E0026B21E7C4250088E79C /* register.mm */; };
 		07E0027C21E7C8960088E79C /* AnsiConsoleOutputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E0026D21E7C8950088E79C /* AnsiConsoleOutputStream.h */; };
 		07E0027E21E7C8960088E79C /* AnsiConsoleTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E0026F21E7C8950088E79C /* AnsiConsoleTextView.m */; };
@@ -30,6 +28,8 @@
 		07E0028E21E7CAAD0088E79C /* ConsoleJS.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E0028C21E7CAAD0088E79C /* ConsoleJS.m */; };
 		07E0029121E87E2E0088E79C /* UIColor+String.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E0028F21E87E2E0088E79C /* UIColor+String.h */; };
 		07E0029221E87E2E0088E79C /* UIColor+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E0029021E87E2E0088E79C /* UIColor+String.m */; };
+		07E002C621EDD09D0088E79C /* LiquidCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E002C521EDD09D0088E79C /* LiquidCore.framework */; };
+		07E002CD21EDD1330088E79C /* caraml_core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E002CC21EDD1330088E79C /* caraml_core.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +38,6 @@
 		07E0025821E797FB0088E79C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07E0026221E7AA670088E79C /* caraml-console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "caraml-console.h"; path = "../../src/caraml-console.h"; sourceTree = "<group>"; };
 		07E0026321E7AA670088E79C /* caraml-console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "caraml-console.cpp"; path = "../../src/caraml-console.cpp"; sourceTree = "<group>"; };
-		07E0026721E7AB1E0088E79C /* LiquidCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LiquidCore.framework; path = ../Carthage/Build/iOS/LiquidCore.framework; sourceTree = "<group>"; };
-		07E0026821E7AB1E0088E79C /* caraml_core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = caraml_core.framework; path = ../Carthage/Build/iOS/caraml_core.framework; sourceTree = "<group>"; };
 		07E0026B21E7C4250088E79C /* register.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = register.mm; sourceTree = "<group>"; };
 		07E0026D21E7C8950088E79C /* AnsiConsoleOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnsiConsoleOutputStream.h; sourceTree = "<group>"; };
 		07E0026F21E7C8950088E79C /* AnsiConsoleTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnsiConsoleTextView.m; sourceTree = "<group>"; };
@@ -58,6 +56,8 @@
 		07E0028C21E7CAAD0088E79C /* ConsoleJS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConsoleJS.m; sourceTree = "<group>"; };
 		07E0028F21E87E2E0088E79C /* UIColor+String.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+String.h"; sourceTree = "<group>"; };
 		07E0029021E87E2E0088E79C /* UIColor+String.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+String.m"; sourceTree = "<group>"; };
+		07E002C521EDD09D0088E79C /* LiquidCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LiquidCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07E002CC21EDD1330088E79C /* caraml_core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = caraml_core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,8 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07E0026921E7AB1E0088E79C /* LiquidCore.framework in Frameworks */,
-				07E0026A21E7AB1E0088E79C /* caraml_core.framework in Frameworks */,
+				07E002CD21EDD1330088E79C /* caraml_core.framework in Frameworks */,
+				07E002C621EDD09D0088E79C /* LiquidCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,8 +122,8 @@
 		07E0026621E7AB1D0088E79C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				07E0026821E7AB1E0088E79C /* caraml_core.framework */,
-				07E0026721E7AB1E0088E79C /* LiquidCore.framework */,
+				07E002CC21EDD1330088E79C /* caraml_core.framework */,
+				07E002C521EDD09D0088E79C /* LiquidCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -155,7 +155,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07E0025C21E797FB0088E79C /* Build configuration list for PBXNativeTarget "caraml-console" */;
 			buildPhases = (
-				07E0026121E7A7EE0088E79C /* ShellScript */,
 				07E0025221E797FB0088E79C /* Resources */,
 				07E0024F21E797FB0088E79C /* Headers */,
 				07E0025021E797FB0088E79C /* Sources */,
@@ -211,30 +210,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		07E0026121E7A7EE0088E79C /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/../Carthage/Build/iOS/LiquidCore.framework",
-				"$(SRCROOT)/../Carthage/Build/iOS/caraml_core.framework",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LiquidCore.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/caraml_core.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		07E0025021E797FB0088E79C /* Sources */ = {
@@ -385,10 +360,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
+				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = (
-					"$(FRAMEWORK_SEARCH_PATHS)/LiquidCore.framework/Headers/addon/node",
-					"$(FRAMEWORK_SEARCH_PATHS)/LiquidCore.framework/Headers/addon/v8",
+					"$(PROJECT_DIR)/../../LiquidCore/deps/node-8.9.3/src",
+					"$(PROJECT_DIR)/../../LiquidCore/deps/node-8.9.3/deps/v8/include",
 				);
 				INFOPLIST_FILE = "caraml-console/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -414,10 +389,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
+				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = (
-					"$(FRAMEWORK_SEARCH_PATHS)/LiquidCore.framework/Headers/addon/node",
-					"$(FRAMEWORK_SEARCH_PATHS)/LiquidCore.framework/Headers/addon/v8",
+					"$(PROJECT_DIR)/../../LiquidCore/deps/node-8.9.3/src",
+					"$(PROJECT_DIR)/../../LiquidCore/deps/node-8.9.3/deps/v8/include",
 				);
 				INFOPLIST_FILE = "caraml-console/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

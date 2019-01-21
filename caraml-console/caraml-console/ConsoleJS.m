@@ -37,10 +37,10 @@ typedef enum _State {
 static NSString* createJSS =
     @"((thiz) => {"
     @"  let e=new events();"
-    @"  e.attach = thiz.attach;"
-    @"  e.detach = thiz.detach;"
-    @"  e.state  = thiz.state;"
-    @"  e.write  = thiz.write;"
+    @"  e.attach = (o)=>thiz.attach(o);"
+    @"  e.detach = ()=>thiz.detach();"
+    @"  e.state  = ()=>thiz.state();"
+    @"  e.write  = (s)=>thiz.write(s);"
     @"  return e;"
     @"})";
 
@@ -53,7 +53,7 @@ static NSString* createPromiseObjectS =
     @"  return po;"
     @"})()";
 
-static NSString* emitFuncS = @"() => arguments[0].emit.call(...arguments)";
+static NSString* emitFuncS = @"(()=>{return function(){return arguments[0].emit.call(...arguments)}})()";
 
 - (id) init:(JSContext*)context service:(LCMicroService*)service opts:(JSValue*)opts
 {
@@ -66,6 +66,7 @@ static NSString* emitFuncS = @"() => arguments[0].emit.call(...arguments)";
         // defaults
         _backgroundColor = UIColor.blackColor;
         _textColor = UIColor.greenColor;
+        _textColorString = @"green";
         _fontSize = @(12);
         
         if (opts != nil && [opts isObject]) {
@@ -77,8 +78,9 @@ static NSString* emitFuncS = @"() => arguments[0].emit.call(...arguments)";
                 if (bgc != nil) _backgroundColor = bgc;
             }
             if ([tc isString]) {
-                UIColor *tcc = [UIColor colorWithString:[bg toString]];
+                UIColor *tcc = [UIColor colorWithString:[tc toString]];
                 if (tcc != nil) _textColor = tcc;
+                _textColorString = [tc toString];
             }
             if ([fs isNumber]) {
                 _fontSize = [fs toNumber];
@@ -102,7 +104,7 @@ static NSString* emitFuncS = @"() => arguments[0].emit.call(...arguments)";
     if (emitFunc_ == nil) {
         emitFunc_ = [context_ evaluateScript:emitFuncS];
     }
-    assert(emitFunc_ != nil);
+    assert(emitFunc_ != nil && emitFunc_.isObject);
     return emitFunc_;
 }
 
@@ -210,7 +212,9 @@ static NSString* emitFuncS = @"() => arguments[0].emit.call(...arguments)";
     [process_ async:^(JSContext *context) {
         context.exceptionHandler = ^(JSContext* context, JSValue *exception) {
             self->processedException_ = YES;
-            [context[@"console"] invokeMethod:@"error" withArguments:@[exception]];
+            JSValue *toString = [context evaluateScript:@"(()=>function() { return Error.prototype.toString.call(...arguments) })()"];
+            JSValue *out = [toString callWithArguments:@[exception]];
+            [context[@"console"] invokeMethod:@"error" withArguments:@[out]];
         };
         if (!fromRestore) {
             if (self->attachPromise_ != nil) {

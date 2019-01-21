@@ -4,7 +4,7 @@
  * Distributed under the MIT License.  See LICENSE.md at
  * https://github.com/LiquidPlayer/caraml-console for terms and conditions.
  */
-#include <node.h>
+#include "node.h"
 #include "v8.h"
 #include "caraml-console.h"
 

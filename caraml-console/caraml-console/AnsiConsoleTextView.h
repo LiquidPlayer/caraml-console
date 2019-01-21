@@ -12,6 +12,8 @@
 
 @interface LCAnsiConsoleTextView : UITextView
 @property (nonatomic, readwrite, weak) NSObject<LCAnsiConsoleTextViewDelegate>* refreshDelegate;
+@property (nonatomic, strong) NSString *textColorString;
+@property (nonatomic, strong) NSNumber *fontSize;
 
 - (void) print:(NSString *)ansiString;
 - (void) println:(NSString *)ansiString;

@@ -4,7 +4,7 @@
  * Distributed under the MIT License.  See LICENSE.md at
  * https://github.com/LiquidPlayer/caraml-console for terms and conditions.
  */
-#import <LiquidCore/addon/LCAddOn.h>
+#import <LiquidCore/LiquidCore.h>
 #import "ConsoleJS.h"
 #include "caraml-console.h"
 

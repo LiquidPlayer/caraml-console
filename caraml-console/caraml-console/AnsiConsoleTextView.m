@@ -34,6 +34,18 @@
     return self;
 }
 
+- (void) setTextColorString:(NSString *)textColorString
+{
+    [self.stream setTextColor:textColorString];
+    _textColorString = textColorString;
+}
+
+- (void) setFontSize:(NSNumber *)fontSize
+{
+    [self.stream setFontSize:fontSize];
+    _fontSize = fontSize;
+}
+
 - (void) onRefresh
 {
     if (!self.awaitingRefresh) {

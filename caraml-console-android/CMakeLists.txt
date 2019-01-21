@@ -6,8 +6,8 @@ add_library(
         src/main/cpp/caraml-console.cpp)
 
 include_directories(
-        src/../../../LiquidCore/deps/node-8.9.3/src
-        src/../../../LiquidCore/deps/node-8.9.3/deps/v8/include
+        build/liquidcore-addon/include/node
+        build/liquidcore-addon/include/v8
 )
 
 find_library(
@@ -19,24 +19,24 @@ add_library(
         SHARED
         IMPORTED
 )
-
-if(${ANDROID_ABI} STREQUAL armeabi-v7a)
-    SET( ARCH_SIZE "32bit" )
-elseif(${ANDROID_ABI} STREQUAL x86)
-    SET( ARCH_SIZE "32bit" )
-elseif(${ANDROID_ABI} STREQUAL x86_64)
-    SET( ARCH_SIZE "64bit" )
-elseif(${ANDROID_ABI} STREQUAL arm64-v8a)
-    SET( ARCH_SIZE "64bit" )
-endif()
-
+add_library(
+        liquidcore-lib
+        SHARED
+        IMPORTED
+)
 set_target_properties(
         node-lib
         PROPERTIES IMPORTED_LOCATION
-        ${PROJECT_SOURCE_DIR}/../../LiquidCore/deps/node-8.9.3/prebuilt/${ARCH_SIZE}/nosymbols/${ANDROID_ABI}/libnode.so
+        ${PROJECT_SOURCE_DIR}/build/liquidcore-addon/jni/${ANDROID_ABI}/libnode.so
+)
+set_target_properties(
+        liquidcore-lib
+        PROPERTIES IMPORTED_LOCATION
+        ${PROJECT_SOURCE_DIR}/build/liquidcore-addon/jni/${ANDROID_ABI}/libliquidcore.so
 )
 
 target_link_libraries( # Specifies the target library.
         caraml-console.node
         node-lib
+        liquidcore-lib
         ${log-lib})

@@ -16,6 +16,8 @@
 
 @interface LCAnsiConsoleOutputStream : LCHtmlAnsiOutputStream
 @property (strong, atomic) NSAttributedString *displayText;
+@property (nonatomic, strong) NSString *textColor;
+@property (nonatomic, strong) NSNumber *fontSize;
 
 - (id) initWithInitialDisplayText:(NSAttributedString *)text delegate:(NSObject<LCAnsiConsoleOutputStreamDelegate>*)delegate;
 - (void) print:(NSString*)ansiString;
