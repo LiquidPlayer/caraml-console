@@ -11,5 +11,6 @@
 /captures
 .externalNativeBuild
 /node_modules
-/Carthage
+Carthage/
 xcuserdata/
+/release

@@ -2,10 +2,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -35,7 +35,7 @@ configurations {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -47,10 +47,11 @@ dependencies {
         liquidcore 'com.github.LiquidPlayer:LiquidCore:0.6.0'
         implementation 'com.github.LiquidPlayer:LiquidCore:0.6.0'
     }
-    if (findProject(':caraml-core-android') != null) {
-        implementation project(':caraml-core-android')
+    /* AddOn: caraml-core */
+    if (findProject(':caraml-core') != null) {
+        implementation project(':caraml-core')
     } else {
-        implementation 'com.github.LiquidPlayer:caraml-core:0.6.0'
+        implementation(path:new File(rootProject.projectDir, 'node_modules/caraml-core/release/caraml-core-android-release'), ext:'aar')
     }
 }
 
