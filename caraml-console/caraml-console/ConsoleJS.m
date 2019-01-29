@@ -7,7 +7,6 @@
 #import "ConsoleJS.h"
 #import "UIColor+String.h"
 #import "ConsoleView.h"
-#import <caraml_core/caraml_core.h>
 
 typedef enum _State {
     Init,

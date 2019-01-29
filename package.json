@@ -26,6 +26,9 @@
     "android": "release/caraml-console-android-release",
     "android-dev": "caraml-console-android",
     "ios": 0,
-    "ios-dev": "caraml-console.podspec"
+    "ios-dev": {
+      "name": "caraml-console",
+      "path": "caraml-console.podspec"
+    }
   }
 }

@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 #import <LiquidCore/LiquidCore.h>
 #import <JavaScriptCore/JavaScriptCore.h>
-#import <caraml_core/caraml_core.h>
+#import "caraml_core.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -21,11 +21,17 @@ Pod::Spec.new do |s|
     "caraml-console/caraml-console/*.{h,m,mm}"
 
   s.public_header_files =
-    "caraml-core/caraml-core/caraml_console.h"
+    "caraml-console/caraml-console/caraml_console.h"
 
   s.xcconfig = {
     :CLANG_WARN_DOCUMENTATION_COMMENTS => 'NO'
   }
+
+  s.resources = [
+    'caraml-console/caraml-console/ConsoleView.xib',
+  ]
+
+  s.swift_version = '3.0'
 
   s.dependency "LiquidCore"
   s.dependency "caraml-core"
