@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "caraml-console"
-  s.version      = "0.6.0"
+  s.version      = "0.1.0"
   s.summary      = "ANSI console addon for caraml"
 
   s.description  = <<-DESC

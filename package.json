@@ -20,14 +20,14 @@
   },
   "homepage": "https://github.com/LiquidPlayer/caraml-console#readme",
   "dependencies": {
-    "bindings": "^1.3.1"
+    "bindings": "^1.3.1",
+    "@liquidcore/caraml-core": "^0.1.2"
   },
   "liquidcore-addon": {
-    "android": "release/caraml-console-android-release",
+    "android": "release/caraml-console-release",
     "android-dev": "caraml-console-android",
     "ios": {
       "name": "caraml-console",
-      "version": "0.6.0",
       "specs": "https://github.com/LiquidPlayer/Specs.git"
     },
     "ios-dev": {

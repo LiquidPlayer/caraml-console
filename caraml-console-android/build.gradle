@@ -7,7 +7,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "0.1.0"
+        setProperty("archivesBaseName", "caraml-console")
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
@@ -21,6 +22,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {}
     }
     externalNativeBuild {
         cmake {
@@ -40,9 +42,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    if (findProject(':LiquidCoreAndroid') != null) {
-        liquidcore project(path: ':LiquidCoreAndroid', configuration: 'default')
-        implementation project(':LiquidCoreAndroid')
+    if (findProject(':LiquidCore') != null) {
+        liquidcore project(path: ':LiquidCore', configuration: 'default')
+        implementation project(':LiquidCore')
     } else {
         liquidcore 'com.github.LiquidPlayer:LiquidCore:0.6.0'
         implementation 'com.github.LiquidPlayer:LiquidCore:0.6.0'
@@ -51,7 +53,7 @@ dependencies {
     if (findProject(':caraml-core') != null) {
         implementation project(':caraml-core')
     } else {
-        implementation(path:new File(rootProject.projectDir, 'node_modules/caraml-core/release/caraml-core-android-release'), ext:'aar')
+        implementation fileTree(include:['caraml-core-release.aar'], dir:new File(rootProject.projectDir, 'node_modules/@liquidcore/caraml-core/release'))
     }
 }
 
@@ -76,31 +78,6 @@ afterEvaluate {
         }
     }
 }
-
-// build a jar with source files
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-task javadoc(type: Javadoc) {
-    failOnError  false
-    source = android.sourceSets.main.java.sourceFiles
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    classpath += configurations.compile
-}
-
-// build a jar with javadoc
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives sourcesJar
-    archives javadocJar
-}
-
 
 apply plugin: 'com.github.dcendents.android-maven'
 
