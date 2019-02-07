@@ -101,7 +101,7 @@ var cons = new Console()
 The Console class instance represents a console view that can be attached and detached to a caraml-core
 view.
 
-#### Event: 'init'
+#### Event: 'ready'
 
 Emitted when the console view has been created and is ready to be attached to a caraml-core view.
 
