@@ -131,7 +131,7 @@ the output streams will pass through all console instances.
 
 #### cons.display([core-object])
 
-* `core-object <object>` A caraml-core view object obtained through `var core = require(`@liquidcore/caraml-core`)`
+* `core-object <object>` A caraml-core view object obtained through `var core = require('@liquidcore/caraml-core')`
 * Returns `<promise>` which is resolved when the view is attached, or rejected with an error string
 
 Requests the console to be displayed (attached) on a caraml-core view.  If no `core-object` is provided, the default
