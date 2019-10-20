@@ -7,13 +7,12 @@
 package org.liquidplayer.caraml.console;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.v4.widget.NestedScrollView;
+import androidx.core.widget.NestedScrollView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.KeyEvent;

@@ -7,10 +7,9 @@
 package org.liquidplayer.caraml.console;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v7.widget.AppCompatTextView;
+import androidx.appcompat.widget.AppCompatTextView;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.AttributeSet;

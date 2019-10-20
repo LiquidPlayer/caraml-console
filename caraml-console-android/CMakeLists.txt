@@ -15,7 +15,7 @@ find_library(
         log)
 
 add_library(
-        node-lib
+        js-lib
         SHARED
         IMPORTED
 )
@@ -25,18 +25,18 @@ add_library(
         IMPORTED
 )
 set_target_properties(
-        node-lib
+        js-lib
         PROPERTIES IMPORTED_LOCATION
-        ${PROJECT_SOURCE_DIR}/build/liquidcore-addon/jni/${ANDROID_ABI}/libnode.so
+        ${PROJECT_SOURCE_DIR}/build/liquidcore-addon/jni/${ANDROID_ABI}/libliquidjs.so
 )
 set_target_properties(
         liquidcore-lib
         PROPERTIES IMPORTED_LOCATION
-        ${PROJECT_SOURCE_DIR}/build/liquidcore-addon/jni/${ANDROID_ABI}/libliquidcore.so
+        ${PROJECT_SOURCE_DIR}/build/liquidcore-addon/jni/${ANDROID_ABI}/libliquidnode.so
 )
 
 target_link_libraries( # Specifies the target library.
         caraml-console.node
-        node-lib
+        js-lib
         liquidcore-lib
         ${log-lib})

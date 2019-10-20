@@ -9,7 +9,7 @@ android {
         versionCode 1
         versionName "0.1.0"
         setProperty("archivesBaseName", "caraml-console")
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
                 abiFilters "x86", "armeabi-v7a", "x86_64", "arm64-v8a"
@@ -37,17 +37,22 @@ configurations {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
 
     if (findProject(':LiquidCore') != null) {
         liquidcore project(path: ':LiquidCore', configuration: 'default')
+        liquidcore project(path: ':LiquidV8', configuration: 'default')
         implementation project(':LiquidCore')
+        implementation project(':LiquidV8')
     } else {
-        liquidcore 'com.github.LiquidPlayer:LiquidCore:0.6.0'
-        implementation 'com.github.LiquidPlayer:LiquidCore:0.6.0'
+        liquidcore 'com.github.LiquidPlayer:LiquidCore:0.7.0'
+        liquidcore 'com.github.LiquidPlayer:LiquidV8:0.7.0'
+        implementation 'com.github.LiquidPlayer:LiquidCore:0.7.0'
+        implementation 'com.github.LiquidPlayer:LiquidV8:0.7.0'
     }
     /* AddOn: caraml-core */
     if (findProject(':caraml-core') != null) {

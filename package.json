@@ -1,6 +1,6 @@
 {
   "name": "@liquidcore/caraml-console",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "ANSI Console Add on for Caraml",
   "main": "lib/index.js",
   "directories": {
