@@ -1,6 +1,10 @@
 caraml
 ------
 
+[![Download](https://img.shields.io/npm/dt/@liquidcore/caraml-console.svg)](https://www.npmjs.com/package/@liquidcore/caraml-console)
+
+[![NPM](https://nodei.co/npm/@liquidcore/caraml-console.png)](https://nodei.co/npm/@liquidcore/caraml-console)
+
 caraml is a native mobile UI markup language designed for running native micro-apps on Android and iOS
 from node.js instances.  It is built on top of [LiquidCore](https://github.com/LiquidPlayer/LiquidCore), a
 library which provides node-based virtual machines on mobile devices.
@@ -15,42 +19,19 @@ that can interact with a LiquidCore micro service. This surface is most useful f
 
 To integrate, clients must instantiate a `CaramlView` as described in the [`caraml-core`](https://github.com/LiquidPlayer/caraml-core`) project.
 
-### Install LiquidCore and caraml-console
+### Step 1: Install LiquidCore
 
-First install the command-line utilities:
+Follow the [directions for installing LiquidCore from `npm`](https://github.com/LiquidPlayer/LiquidCore/blob/master/README.md#installation).
 
-```bash
-$ npm i -g liquidcore-cli
-```
-
-Then, in your project's root directory, create a `package.json` file (in order to create a local `node_modules`
-directory) and install caraml-core.
+### Step 2: Install caraml-console
 
 ```bash
-$ echo "{}" > package.json
-$ npm i @liquidcore/caraml-console
+$ npm install @liquidcore/caraml-console
+$ npm install
 ```
 
-This will install caraml-console and its dependencies locally.  Finally, generate the required build files for your OS.
+The second `npm install` triggers a post-install script in your project that will automatically set up `caraml-console` into your build.
 
-On Android:
-```bash
-$ liquidcore gradle
-```
-
-On iOS:
-```
-$ liquidcore pod <my_project_target> > Podfile
-```
-
-In the case of Android, this will create a file called `liquidcore.build.gradle`.  Add this to your project's
-`build.gradle` file as described in the output of the `liquidcore` command.  For iOS, this will generate a `Podfile`
-that can either be used directly as-is or the pods can be integrated into an existing
-`Podfile` if you are already using Cocoapods.  Finally, for iOS:
-
-```bash
-$ pod install
-```
 
 JavaScript API
 --------------
