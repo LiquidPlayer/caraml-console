@@ -35,5 +35,9 @@ if (!project.hasProperty('caraml_console_include_gradle')) {
     }
   }
 
-  apply from: new File(buildscript.getSourceFile(), '../node_modules/@liquidcore/caraml-core/include.gradle')
+  try {
+    apply from: new File(rootProject.projectDir, 'node_modules/@liquidcore/caraml-core/include.gradle')
+  } catch (Exception e) {
+    apply from: new File(buildscript.getSourceFile(), '../node_modules/@liquidcore/caraml-core/include.gradle')
+  }
 }
