@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'de.undercouch.download'
 
 android {
     compileSdkVersion 28
@@ -31,10 +31,6 @@ android {
     }
 }
 
-configurations {
-    liquidcore {}
-}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -42,48 +38,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test:rules:1.2.0'
-
-    if (findProject(':LiquidCore') != null) {
-        liquidcore project(path: ':LiquidCore', configuration: 'default')
-        liquidcore project(path: ':LiquidV8', configuration: 'default')
-        implementation project(':LiquidCore')
-        implementation project(':LiquidV8')
-    } else {
-        liquidcore 'com.github.LiquidPlayer:LiquidCore:0.7.0'
-        liquidcore 'com.github.LiquidPlayer:LiquidV8:0.7.0'
-        implementation 'com.github.LiquidPlayer:LiquidCore:0.7.0'
-        implementation 'com.github.LiquidPlayer:LiquidV8:0.7.0'
-    }
-    /* AddOn: caraml-core */
-    if (findProject(':caraml-core') != null) {
-        implementation project(':caraml-core')
-    } else {
-        implementation fileTree(include:['caraml-core-release.aar'], dir:new File(rootProject.projectDir, 'node_modules/@liquidcore/caraml-core/release'))
-    }
 }
 
-task extractAddOnLibsAndHeaders(type: Sync) {
-    dependsOn configurations.liquidcore
-
-    from {
-        configurations.liquidcore.collect {zipTree(it)}
-    }
-    include "jni/**/*.so", "include/**/*"
-    into "build/liquidcore-addon"
-}
-
-afterEvaluate {
-    def addon = file('build/liquidcore-addon')
-    if (!addon.exists()) {
-        if (project.hasProperty("externalNativeBuildDebug")) {
-            externalNativeBuildDebug.dependsOn extractAddOnLibsAndHeaders
-        }
-        if (project.hasProperty("externalNativeBuildRelease")) {
-            externalNativeBuildRelease.dependsOn extractAddOnLibsAndHeaders
-        }
-    }
-}
-
-apply plugin: 'com.github.dcendents.android-maven'
-
-group='com.github.liquidplayer'
+apply from: new File(buildscript.getSourceFile(), '../../node_modules/liquidcore/include.gradle')
+apply from: new File(buildscript.getSourceFile(), '../../node_modules/liquidcore/addon.gradle')
+apply from: new File(buildscript.getSourceFile(), '../../node_modules/@liquidcore/caraml-core/include.gradle')

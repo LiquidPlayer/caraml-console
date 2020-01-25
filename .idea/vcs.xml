@@ -3,5 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/../LiquidCore" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/node_modules/@liquidcore/caraml-core" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/node_modules/liquidcore" vcs="Git" />
   </component>
 </project>

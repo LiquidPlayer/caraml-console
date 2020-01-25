@@ -45,11 +45,21 @@
     return view;
 }
 
+- (void) hideKeyboard: (UITapGestureRecognizer *)recognizer
+{
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+}
+
 - (void) initView
 {
     self.downHistory.enabled = NO;
     self.upHistory.enabled = NO;
     self.command.selected = YES;
+        
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+    [self.console addGestureRecognizer:gestureRecognizer];
+    self.console.userInteractionEnabled = YES;
+    gestureRecognizer.cancelsTouchesInView = NO;
 }
 
 - (void) layoutSubviews
@@ -157,6 +167,7 @@
             [self.session processCommand:cmd];
         }
         self.command.selected = YES;
+        [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
     }
 }
 

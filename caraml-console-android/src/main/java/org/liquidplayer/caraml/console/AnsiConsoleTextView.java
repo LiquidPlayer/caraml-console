@@ -9,7 +9,11 @@ package org.liquidplayer.caraml.console;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+
+import androidx.annotation.Keep;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.text.HtmlCompat;
+
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -24,6 +28,8 @@ class AnsiConsoleTextView extends AppCompatTextView {
         super(context, attrs);
         stream = new ConsoleOutputStream(new ByteArrayOutputStream());
     }
+
+    private final static String UTF8 = "UTF-8";
 
     public void print(final String string) {
         stream.print(string, false);
@@ -43,6 +49,7 @@ class AnsiConsoleTextView extends AppCompatTextView {
             listeners.add(listener);
     }
 
+    @SuppressWarnings("unused") @Keep
     public void removeListener(Listener listener) {
         listeners.remove(listener);
     }
@@ -116,7 +123,7 @@ class AnsiConsoleTextView extends AppCompatTextView {
                             consoleStrings.clear();
                         }
                         try {
-                            write(out.getBytes("UTF-8"));
+                            write(out.getBytes(UTF8));
                             flush();
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -151,11 +158,11 @@ class AnsiConsoleTextView extends AppCompatTextView {
                 CharSequence text_;
 
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                    text_ = Html.fromHtml(new String(os.toByteArray(), "UTF-8"),
-                            Html.FROM_HTML_MODE_LEGACY);
+                    text_ = HtmlCompat.fromHtml(new String(os.toByteArray(), UTF8),
+                            HtmlCompat.FROM_HTML_MODE_LEGACY);
                 } else {
-                    //noinspection deprecation
-                    text_ = Html.fromHtml(new String(os.toByteArray(), "UTF-8"));
+                    text_ = HtmlCompat.fromHtml(new String(os.toByteArray(), UTF8),
+                            HtmlCompat.FROM_HTML_MODE_LEGACY);
                 }
                 os.reset();
 
@@ -193,11 +200,8 @@ class AnsiConsoleTextView extends AppCompatTextView {
                                 Math.min(index,displayText.length()));
                         break;
                     case ERASE_SCREEN_TO_BEGINING:
-                        // FIXME
-                        displayText = "";
-                        index = 0;
-                        break;
                     case ERASE_SCREEN:
+                        // FIXME
                         displayText = "";
                         index = 0;
                         break;
@@ -230,7 +234,7 @@ class AnsiConsoleTextView extends AppCompatTextView {
         }
 
         private int[] currentCursorPos() {
-            int pos[] = {1,1};
+            int[] pos = {1,1};
             String text = displayText.toString();
 
             for (int i=0; i<index; i++) {
@@ -247,43 +251,43 @@ class AnsiConsoleTextView extends AppCompatTextView {
 
         @Override
         protected void processCursorToColumn(int x) throws IOException {
-            int pos[] = currentCursorPos();
+            int[] pos = currentCursorPos();
             processCursorTo(pos[0], Math.max(1,x));
         }
 
         @Override
         protected void processCursorUpLine(int count) throws IOException {
-            int pos[] = currentCursorPos();
+            int[] pos = currentCursorPos();
             processCursorTo(Math.max(pos[0] - count,1), 1);
         }
 
         @Override
         protected void processCursorDownLine(int count) throws IOException {
-            int pos[] = currentCursorPos();
+            int[] pos = currentCursorPos();
             processCursorTo(pos[0] + count, 1);
         }
 
         @Override
         protected void processCursorLeft(int count) throws IOException {
-            int pos[] = currentCursorPos();
+            int[] pos = currentCursorPos();
             processCursorTo(pos[0], Math.max(pos[1] - count,1));
         }
 
         @Override
         protected void processCursorRight(int count) throws IOException {
-            int pos[] = currentCursorPos();
+            int[] pos = currentCursorPos();
             processCursorTo(pos[0], pos[1] + count);
         }
 
         @Override
         protected void processCursorDown(int count) throws IOException {
-            int pos[] = currentCursorPos();
+            int[] pos = currentCursorPos();
             processCursorTo(pos[0] + count, pos[1]);
         }
 
         @Override
         protected void processCursorUp(int count) throws IOException {
-            int pos[] = currentCursorPos();
+            int[] pos = currentCursorPos();
             processCursorTo(Math.max(pos[0] - count,1), pos[1]);
         }
 

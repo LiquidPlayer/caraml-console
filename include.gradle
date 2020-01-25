@@ -1,0 +1,39 @@
+apply plugin: 'de.undercouch.download'
+import groovy.json.JsonSlurper
+
+def getCaramlConsoleVersionFromNpm() {
+    def inputFile = new File(buildscript.getSourceFile().getParent(), "package.json")
+    def packageJson = new JsonSlurper().parseText(inputFile.text)
+
+    return packageJson["version"]
+}
+
+if (!project.hasProperty('caraml_console_include_gradle')) {
+  project.ext.set('caraml_console_include_gradle', true)
+  def _caraml_console_aar = "caraml-console-lib-" + getCaramlConsoleVersionFromNpm() + ".aar"
+
+  def downloadsDir_caraml_console = new File(rootProject.projectDir, ".liquidcore")
+  task createDownloadsDir_caraml_console {
+      downloadsDir_caraml_console.mkdirs()
+  }
+  dependencies {
+      if (findProject(':caraml-console-lib') != null) {
+          implementation project(':caraml-console-lib')
+      } else {
+          implementation fileTree(include:[_caraml_console_aar], dir:downloadsDir_caraml_console)
+      }
+  }
+
+  if (findProject(':caraml-console-lib') == null) {
+    android { tasks.withType(JavaCompile) {
+        compileTask -> compileTask.dependsOn download_caraml_console_lib }}
+    task download_caraml_console_lib(dependsOn: createDownloadsDir_caraml_console, type: Download) {
+        src 'https://liquidplayer.github.io/packages/' + _caraml_console_aar
+        onlyIfNewer true
+        overwrite false
+        dest new File(downloadsDir_caraml_console, _caraml_console_aar)
+    }
+  }
+
+  apply from: new File(buildscript.getSourceFile(), '../node_modules/@liquidcore/caraml-core/include.gradle')
+}
