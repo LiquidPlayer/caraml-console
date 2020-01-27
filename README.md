@@ -17,7 +17,7 @@ caraml-console
 caraml-console is a UI surface for use with caraml. It provides an ANSI-compatible Node.js console
 that can interact with a LiquidCore micro service. This surface is most useful for debugging.
 
-To integrate, clients must instantiate a `CaramlView` as described in the [`caraml-core`](https://github.com/LiquidPlayer/caraml-core`) project.
+To integrate, clients must instantiate a `CaramlView` as described in the [`caraml-core`](https://github.com/LiquidPlayer/caraml-core) project.
 
 ### Step 1: Install LiquidCore
 
