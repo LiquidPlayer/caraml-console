@@ -21,7 +21,14 @@ Pod::Spec.new do |s|
     "caraml-console/caraml-console/caraml_console.h"
   ]
   s.xcconfig = {
-    :CLANG_WARN_DOCUMENTATION_COMMENTS => 'NO'
+    :CLANG_WARN_DOCUMENTATION_COMMENTS => 'NO',
+    :OTHER_CFLAGS => [
+      '-Wno-nullability-completeness'
+    ].join(' '),
+    :HEADER_SEARCH_PATHS => [
+      "${PODS_CONFIGURATION_BUILD_DIR}/LiquidCore-headers/LiquidCore_headers.framework/PrivateHeaders/v8",
+      "${PODS_CONFIGURATION_BUILD_DIR}/LiquidCore-headers/LiquidCore_headers.framework/PrivateHeaders/node",
+    ].join(' '),
   }
   s.resources = [
     'caraml-console/caraml-console/ConsoleView.xib',
