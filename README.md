@@ -71,68 +71,114 @@ cons.display(core)
 })
 ```
 
-### Class Console
+<a name="Console"></a>
 
-The Console class can be constructed with `new`, for example:
+## Console
+The [Console](#Console) class instance represents a console view that can be attached and detached to a caraml-core
+ view.
 
-```javascript
-var cons = new Console()
-```
+**Kind**: global class  
 
-The Console class instance represents a console view that can be attached and detached to a caraml-core
-view.
+* [Console](#Console)
+    * [new Console([opts])](#new_Console_new)
+    * [.display([caramlview])](#Console+display) ⇒ <code>Promise</code>
+    * [.hide()](#Console+hide) ⇒ <code>Promise</code>
+    * [.getParent()](#Console+getParent) ⇒ <code>Object</code>
+    * [.getState()](#Console+getState) ⇒ <code>string</code>
+    * ["ready"](#Console+event_ready)
+    * ["attached"](#Console+event_attached)
+    * ["detached"](#Console+event_detached)
+    * ["error"](#Console+event_error)
+    * [.Transform](#Console+Transform) ⇒ <code>String</code>
 
-#### Event: 'ready'
+<a name="new_Console_new"></a>
 
+### new Console([opts])
+Creates a new console that will redirect stderr and stdout through it. Multiple consoles will
+   be chained, i.e. the output streams will pass through all console instances.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [opts] | <code>Object</code> |  |
+| [opts.textColor] | <code>string</code> | An html-like description of text color, e.g. 'black' or '#ed5616' |
+| [opts.backgroundColor] | <code>string</code> | An html-like description of background color |
+| [opts.fontSize] | <code>number</code> | A floating-point font point size |
+| [opts.transformStdout] | [<code>Transform</code>](#Console+Transform) | A function to transform output string being sent to stdout |
+| [opts.transformStderr] | [<code>Transform</code>](#Console+Transform) | A function to transform output strings being sent to stderr |
+
+<a name="Console+display"></a>
+
+### console.display([caramlview]) ⇒ <code>Promise</code>
+Requests the console to be displayed (attached) on a caraml-core view. If no caramlview is provided,
+     the default core view will be used.
+
+**Kind**: instance method of [<code>Console</code>](#Console)  
+**Returns**: <code>Promise</code> - Promise which is resolved when the view is attached, or rejected with an error string  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [caramlview] | <code>Object</code> | A caraml-core view object obtained through                                     <code>var core = require('@liquidcore/caraml-core')</code> |
+
+<a name="Console+hide"></a>
+
+### console.hide() ⇒ <code>Promise</code>
+Detaches a previously displayed console.
+
+**Kind**: instance method of [<code>Console</code>](#Console)  
+**Returns**: <code>Promise</code> - Resolved when the view is attached, or rejected with an error string  
+<a name="Console+getParent"></a>
+
+### console.getParent() ⇒ <code>Object</code>
+Returns the parent caraml-core view
+
+**Kind**: instance method of [<code>Console</code>](#Console)  
+**Returns**: <code>Object</code> - The caraml-core view to which the console is attached or undefined if not attached  
+<a name="Console+getState"></a>
+
+### console.getState() ⇒ <code>string</code>
+Returns one of 'init', 'detached', 'attaching', 'attached', 'detaching'
+
+**Kind**: instance method of [<code>Console</code>](#Console)  
+**Returns**: <code>string</code> - The current state of the console  
+<a name="Console+event_ready"></a>
+
+### "ready"
 Emitted when the console view has been created and is ready to be attached to a caraml-core view.
 
-#### Event: 'attached'
+**Kind**: event emitted by [<code>Console</code>](#Console)  
+<a name="Console+event_attached"></a>
 
+### "attached"
 Emitted when the console view has been attached to a caraml-core view.
 
-#### Event: 'detached'
+**Kind**: event emitted by [<code>Console</code>](#Console)  
+<a name="Console+event_detached"></a>
 
+### "detached"
 Emitted when the console view has been detached from a caraml-core view.
 
-#### Event: 'error'
+**Kind**: event emitted by [<code>Console</code>](#Console)  
+<a name="Console+event_error"></a>
 
-* `error <string>` A human-readable error string
+### "error"
+Emitted on error
 
-#### new Console([opts])
+**Kind**: event emitted by [<code>Console</code>](#Console)  
 
-* `opts <object>` An optional object containing configuration parameters:
-  * `textColor <string>` An html-like description of text color, e.g. `'black'` or `'#ed5616'`
-  * `backgroundColor <string>` An html-like description of background color
-  * `fontSize <number>` A floating-point font point size
-  * `transformStdout(output <string>) <function>` A function to transform `output` string being sent to `stdout`, e.g. to add coloring with ANSI tags.  Must return type `<string>`
-  * `transformStderr(output <string>) <function>` A function to transform `output` strings being sent to `stderr`
+| Type | Description |
+| --- | --- |
+| <code>string</code> | A human-readable error string |
 
-Creates a new console that will redirect `stderr` and `stdout` through it.  Multiple consoles will be chained, i.e.
-the output streams will pass through all console instances.
+<a name="Console+Transform"></a>
 
-#### cons.display([core-object])
+### console.Transform ⇒ <code>String</code>
+A function to transform output string, e.g. to add coloring with ANSI tags.
 
-* `core-object <object>` A caraml-core view object obtained through `var core = require('@liquidcore/caraml-core')`
-* Returns `<promise>` which is resolved when the view is attached, or rejected with an error string
+**Kind**: instance typedef of [<code>Console</code>](#Console)  
+**Returns**: <code>String</code> - Transformed string  
 
-Requests the console to be displayed (attached) on a caraml-core view.  If no `core-object` is provided, the default
-core view will be used.
+| Param | Type | Description |
+| --- | --- | --- |
+| input | <code>String</code> | Input string |
 
-#### cons.hide()
-
-* Returns `<promise>` which is resolved when the view is detached, or rejected with an error string
-
-Detaches a previously `display`ed console.
-
-#### cons.getParent()
-
-* Returns `<object>`, the caraml-core view to which the console is attached or `undefined` if not attached
-
-#### cons.getState()
-
-* Returns `<string>`, the current state of the console, one of:
-  * `'init'`
-  * `'detached'`
-  * `'attaching'`
-  * `'attached'`
-  * `'detaching'`
